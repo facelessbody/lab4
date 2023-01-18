@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <math.h>
 using namespace std;
 void matrica(int a, int b, int** arr)
 {
@@ -11,24 +10,23 @@ void matrica(int a, int b, int** arr)
         cout << "\n";
     }
     cout << "\n";
-    int arr2[4]{};
+    int *arr2 = new int[b];
     int s1, s2 = 0;
-    int t = 0;
-    cout << "Введите индекс двух строк (от 1 до 4)\nдля нахождения произведений их элементов \n\n";
+    cout << "Введите индекс двух строк (от 1 до " << a <<  ")\nдля нахождения произведений их элементов \n\n";
     cout << "строка 1 = "; cin >> s1;
     cout << "строка 2 = "; cin >> s2; cout << "\n";
     s1 = s1 - 1;
     s2 = s2 - 1;
-    for (int i = 0; i < a; i++) { arr2[t] = arr[s1][i] * arr[s2][i]; t += 1; }
+    for (int i = 0; i < b; i++) { arr2[i] = arr[s1][i] * arr[s2][i]; }
     cout << "Значения произведений: \n";
-    cout << "Произведение по 1 столбцу: " << arr2[0] << "\n";
-    cout << "Произведение по 2 столбцу: " << arr2[1] << "\n";
-    cout << "Произведение по 3 столбцу: " << arr2[2] << "\n\n";
+    for (int i = 0; i < b; ++i)
+        cout << "Произведение по " << i << " столбцу: " << arr2[i] << "\n";
+    cout << "\n\n";
+    delete[] arr2;
 }
 int main()
 {
     setlocale(0, "");
-    int x, y;
     string path = "Matrix.txt";
     ifstream fin;
     fin.open(path);
